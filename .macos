@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+# ~/.macos — https://mths.be/macos
+# Modified by Carmen Probst
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+###############################################################################
+# Carmen`s Customizations                                                     #
+###############################################################################
+
+echo "Hello $(whoami)! Let's get you set up."
+
+echo "mkdir -p $(HOME)/code"
+mkdir -p "$(HOME)/code"
+
+echo "installing homebrew"
+# install homebrew https://brew.sh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+
+echo "brew installing stuff"
+# bat https://github.com/sharkdp/bat
+# carthage
+# cocoapods
+# git-flow-avh
+# hub https://hub.github.com
+# powerlevel9k
+# rbenv
+# swiftgen
+# swiftformat
+# swiftlint
+# wget
+# yarn
+# zsh
+# zsh-autosuggestions
+# zsh-syntax-highlighting
+
+brew tap sambadevi/powerlevel9k
+brew tap caskroom/fonts
+
+brew install bat carthage cocoapods git-flow-avh git-lfs hub powerlevel9k rbenv swiftgen swiftformat swiftlint wget yarn
+brew zsh zsh-autosuggestions zsh-syntax-highlighting
+
+
+echo "brew cask installing apps"
+brew cask install alfred androidtool android-studio charles daisydisk dash fastlane font-hack-nerd-font font-source-code-pro fork \
+google-chrome kindle macvim sequel-pro sketch slack spotify telegram the-unarchiver visual-studio-code provisionql postman \
+qlmarkdown qlstephen quicklook-json webpquicklook
+
+
+# Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+
+echo "mkdir -p $(HOME)/Developer
+mkdir "$(HOME)/Developer"
+
+
+printf "TODO:\n\
+install: \n\
+  Xcode(App Store) \n\
+  1password (App Store) \n\
+  Pixelmator (App Store) \n\
+  Gapplin (App Store) \n\
+  Owly (App Store) \n\
+  Todoist (App Store) \n\
+  Gifski \n\
+  Encrypto \n\
+  Twitterrific \n\
+  
+Restart Terminal.app\n\
+copy dotfiles in your home directory \n\
+login to literally everything \n\
+"
