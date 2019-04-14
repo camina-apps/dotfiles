@@ -1,0 +1,7 @@
+[user]
+	name = Carmen Probst
+[alias]	
+	unstage = reset --soft HEAD^
+    amend = commit --amend -m
+    cpick = cherry-pick
+
