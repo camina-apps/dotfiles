@@ -4,4 +4,4 @@
 	unstage = reset --soft HEAD^
     amend = commit --amend -m
     cpick = cherry-pick
-
+    l = log --pretty=colored
