@@ -1,7 +1,11 @@
 [user]
 	name = Carmen Probst
+[core]
+	excludesfile = /Users/carmen/.gitignore_global
 [alias]	
 	unstage = reset --soft HEAD^
-    amend = commit --amend -m
-    cpick = cherry-pick
-    l = log --pretty=colored
+    	amend = commit --amend -m
+    	cpick = cherry-pick
+	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+[commit]
+	gpgsign = true
